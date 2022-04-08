@@ -1,0 +1,15 @@
+
+block content
+    h1= title
+    -let results =[{soup_name:"Tomato",soup_size:"small",price:4.56},{soup_name:"Corn",soup_size:"medium",price:6.72},{soup_name:"Chicken",soup_size:"large",price:9.92}]
+    div(class="container-fluid")
+    div(class="row")
+        each p,index in results 
+            div(class="col-sm-2" onclick=`buy(${index})`)  #{p.soup_name}  
+            div(class="col-sm-2" onclick=`buy(${index})`)  #{p.soup_size}
+            div(class="col-sm-2" onclick=`buy(${index})`)  #{p.price}
+script.
+    function buy(s)
+    {
+        alert(`You have purchased item ${s+1}`);
+    }
