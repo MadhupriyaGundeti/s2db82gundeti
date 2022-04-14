@@ -58,21 +58,21 @@ async function recreateDB(){
   await soup.deleteMany(); 
  
   let instance1 = new 
-soup({soup_name:"Tomato",  soup_size:'small', 
+soup({soup_name:"Tomato",  soup_size:"small", 
 price:4.56}); 
   instance1.save( function(err,doc) { 
       if(err) return console.error(err); 
       console.log("First object saved") 
   }); 
   let instance2 = new 
-soup({soup_name:"Corn",  soup_size:'medium', 
+soup({soup_name:"Corn",  soup_size:"medium", 
 price:6.72}); 
   instance2.save( function(err,doc) { 
       if(err) return console.error(err); 
       console.log("Second object saved") 
   }); 
   let instance3 = new 
-soup({soup_name:"Chicken",  soup_size:'large', 
+soup({soup_name:"Chicken",  soup_size:"large", 
 price:9.92}); 
   instance3.save( function(err,doc) { 
       if(err) return console.error(err); 
