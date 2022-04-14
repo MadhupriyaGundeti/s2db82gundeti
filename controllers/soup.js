@@ -13,9 +13,17 @@ exports.soup_list = async function(req, res) {
 };  
  
 // for a specific soup. 
-exports.soup_detail = function(req, res) { 
-    res.send('NOT IMPLEMENTED: soup detail: ' + req.params.id); 
+exports.soup_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await soup.findById( req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
 }; 
+ 
  
 // Handle soup create on POST. 
 exports.soup_create_post = async function(req, res) { 
@@ -43,10 +51,25 @@ exports.soup_create_post = async function(req, res) {
 exports.soup_delete = function(req, res) { 
     res.send('NOT IMPLEMENTED: soup delete DELETE ' + req.params.id); 
 }; 
- 
 // Handle soup update form on PUT. 
-exports.soup_update_put = function(req, res) { 
-    res.send('NOT IMPLEMENTED: soup update PUT' + req.params.id); 
+exports.soup_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await soup.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.soup_type)  
+               toUpdate.soup_name = req.body.soup_name; 
+        if(req.body.cost) toUpdate.soup_size = req.body.soup_size; 
+        if(req.body.size) toUpdate.price = req.body.price; 
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
+    } 
 }; 
 // VIEWS 
 // Handle a show all view 
