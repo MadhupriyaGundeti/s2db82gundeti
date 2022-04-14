@@ -59,11 +59,11 @@ ${JSON.stringify(req.body)}`)
         let toUpdate = await soup.findById( req.params.id) 
         // Do updates of properties 
         if(req.body.soup_type)  
-               toUpdate.soup_name = req.body.soup_name; 
-        if(req.body.cost) toUpdate.soup_size = req.body.soup_size; 
-        if(req.body.size) toUpdate.price = req.body.price; 
-        let result = await toUpdate.save(); 
-        console.log("Sucess " + result) 
+               toUpdate.soup_name = req.body.soup_name;
+        if(req.body.cost) toUpdate.soup_size = req.body.soup_size;
+        if(req.body.size) toUpdate.price = req.body.price;
+        let result = await toUpdate.save();
+        console.log("Sucess " + result)
         res.send(result) 
     } catch (err) { 
         res.status(500) 
