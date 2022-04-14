@@ -1,9 +1,16 @@
 var soup = require('../models/soup'); 
- 
-// List of all soups 
-exports.soup_list = function(req, res) { 
-    res.send('NOT IMPLEMENTED: soup list'); 
-}; 
+
+// List of all soup 
+exports.soup_list = async function(req, res) { 
+    try{ 
+        thesoup = await soup.find(); 
+        res.send(thesoup); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
+};  
  
 // for a specific soup. 
 exports.soup_detail = function(req, res) { 
