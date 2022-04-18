@@ -83,3 +83,16 @@ exports.soup_view_all_Page = async function(req, res) {
         res.send(`{"error": ${err}}`); 
     }   
 }; 
+// Handle soup delete on DELETE. 
+exports.soup_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await soup.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
+}; 
+ 
