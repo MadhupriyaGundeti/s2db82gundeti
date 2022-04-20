@@ -32,3 +32,8 @@ module.exports = router;
 router.get('/detail', soup_controller.soup_view_one_Page); 
 /* GET create soup page */ 
 router.get('/create', soup_controller.soup_create_Page); 
+/* GET create update page */ 
+router.get('/update', soup_controller.soup_update_Page); 
+/* GET delete soup page */ 
+router.get('/delete', soup_controller.soup_delete_Page); 
+ 

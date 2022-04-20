@@ -58,10 +58,10 @@ ${JSON.stringify(req.body)}`)
     try { 
         let toUpdate = await soup.findById( req.params.id) 
         // Do updates of properties 
-        if(req.body.soup_type)  
+        if(req.body.soup_name)  
                toUpdate.soup_name = req.body.soup_name;
-        if(req.body.cost) toUpdate.soup_size = req.body.soup_size;
-        if(req.body.size) toUpdate.price = req.body.price;
+        if(req.body.soup_size) toUpdate.soup_size = req.body.soup_size;
+        if(req.body.price) toUpdate.price = req.body.price;
         let result = await toUpdate.save();
         console.log("Sucess " + result)
         res.send(result) 
@@ -115,6 +115,32 @@ exports.soup_create_Page =  function(req, res) {
     console.log("create view") 
     try{ 
         res.render('soupcreate', { title: 'soup Create'}); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+// Handle building the view for updating a soup. 
+// query provides the id 
+exports.soup_update_Page =  async function(req, res) { 
+    console.log("update view for item "+req.query.id) 
+    try{ 
+        let result = await soup.findById(req.query.id) 
+        res.render('soupupdate', { title: 'soup Update', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+// Handle a delete one view with id from query 
+exports.soup_delete_Page = async function(req, res) { 
+    console.log("Delete view for id "  + req.query.id) 
+    try{ 
+        result = await soup.findById(req.query.id) 
+        res.render('soupdelete', { title: 'soup Delete', toShow: 
+result }); 
     } 
     catch(err){ 
         res.status(500) 

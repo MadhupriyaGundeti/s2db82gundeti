@@ -1,0 +1,45 @@
+extends layout 
+ 
+block content 
+  h1= title 
+
+  if (toShow == null) 
+    h2 No instance to Update
+  else
+    - let soupid = toShow._id
+    - let soup_name = toShow.soup_name
+    - let soup_size = toShow.soup_size
+    - let price = toShow.price
+
+    div.row(class='mb-2')
+     div.mr-1 ID is
+     div #{soupid}
+    - let actionid = "/resource/soup/" + soupid 
+    form(id='soupForm', action=actionid, method="PUT") 
+      div.form-group 
+          label.soupAttr(for='soup_name') soup Name 
+          input#soup_name(type='text', name='soup_name') 
+      div.form-group 
+          label.soupAttr(for='soup_size') soup size
+          input#soup_size(type='text', name='soup_size') 
+      div.form-group 
+          label.soupAttr(for='price') price
+          input#price(type='number', name='price') 
+      input(type="submit") 
+ 
+    script. 
+      document.forms['soupForm'].addEventListener('submit', (event) => { 
+        event.preventDefault(); 
+        fetch(event.target.action, { 
+          method: 'PUT', 
+          body: new URLSearchParams(new FormData(event.target)) 
+        }).then((resp) => { 
+          return resp.text();  
+        }).then((body) => { 
+          alert("Update succeded") 
+          // TODO handle body 
+        }).catch((error) => { 
+          // TODO handle error 
+          alert("Update failed " + error ) 
+        }); 
+      });
