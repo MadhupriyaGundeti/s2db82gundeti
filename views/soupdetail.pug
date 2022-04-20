@@ -1,0 +1,24 @@
+extends layout 
+ 
+block content 
+  h1= title 
+  if (toShow == null) 
+    h2 No instance Found
+  else 
+    - let soupid = toShow._id 
+    - let soup_name = toShow.soup_name 
+    - let soup_size = toShow.soup_size 
+    - let price = toShow.price 
+    div 
+      div.row 
+        div(class='soupAttr mr-3') soup ID is: 
+        div #{soupid} 
+      div.row 
+        div(class='soupAttr mr-3') soup Name is: 
+        div #{soup_name} 
+      div.row 
+        div(class='soupAttr mr-3') soup cuisine is: 
+        div #{soup_size} 
+      div.row 
+        div(class='soupAttr mr-3') soup Calories are: 
+        div #{price}

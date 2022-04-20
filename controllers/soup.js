@@ -96,3 +96,15 @@ exports.soup_delete = async function(req, res) {
     } 
 }; 
  
+ // Handle a show one view with id specified by query 
+ exports.soup_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await soup.findById( req.query.id) 
+        res.render('soupdetail',{ title: 'soup Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
