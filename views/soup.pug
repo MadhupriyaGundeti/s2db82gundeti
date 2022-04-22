@@ -1,15 +1,17 @@
+extends layout 
 
 block content
     h1= title
     -let results =[{soup_name:"Tomato",soup_size:"small",price:4.56},{soup_name:"Corn",soup_size:"medium",price:6.72},{soup_name:"Chicken",soup_size:"large",price:9.92}]
-    div(class="container-fluid")
-    div(class="row")
-        each p,index in results 
-            div(class="col-sm-2" onclick=`buy(${index})`)  #{p.soup_name}  
-            div(class="col-sm-2" onclick=`buy(${index})`)  #{p.soup_size}
-            div(class="col-sm-2" onclick=`buy(${index})`)  #{p.price}
-script.
-    function buy(s)
-    {
-        alert(`You have purchased item ${s+1}`);
-    }
+    div(class="container-fluid") 
+    div(class="row m-1") 
+      each item in results  
+        - let destination = `dispatch(\"resource/update?id=${item._id}\")` 
+        div(class="row-sm-2", class="m-1") Item #{item.soup_name}(#{item.soup_size}) is #{item.price} 
+          button.btn( class="btn-primary ml-1", onclick= destination) Update 
+   
+    script. 
+      function dispatch(path){ 
+        window.location.href=path 
+      } 
+ 
