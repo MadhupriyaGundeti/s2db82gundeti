@@ -28,12 +28,5 @@ router.get('/soup/:id', soup_controller.soup_detail);
 router.get('/soup', soup_controller.soup_list); 
  
 module.exports = router; 
-/* GET detail soup page */ 
-router.get('/detail', soup_controller.soup_view_one_Page); 
-/* GET create soup page */ 
-router.get('/create', soup_controller.soup_create_Page); 
-/* GET create update page */ 
-router.get('/update', soup_controller.soup_update_Page); 
-/* GET delete soup page */ 
-router.get('/delete', soup_controller.soup_delete_Page); 
+
  

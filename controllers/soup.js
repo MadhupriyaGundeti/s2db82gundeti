@@ -46,11 +46,6 @@ exports.soup_create_post = async function(req, res) {
     }   
 }; 
  
- 
-// Handle soup delete form on DELETE. 
-exports.soup_delete = function(req, res) { 
-    res.send('NOT IMPLEMENTED: soup delete DELETE ' + req.params.id); 
-}; 
 // Handle soup update form on PUT. 
 exports.soup_update_put = async function(req, res) { 
     console.log(`update on id ${req.params.id} with body 

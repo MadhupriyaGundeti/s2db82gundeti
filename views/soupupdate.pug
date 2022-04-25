@@ -34,7 +34,7 @@ block content
           method: 'PUT', 
           body: new URLSearchParams(new FormData(event.target)) 
         }).then((resp) => { 
-          return resp.text();  
+          return resp.json();  
         }).then((body) => { 
           alert("Update succeded") 
           // TODO handle body 

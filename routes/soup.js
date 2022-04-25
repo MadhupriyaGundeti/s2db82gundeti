@@ -1,21 +1,23 @@
 var express = require('express');
-var router = express.Router();
 const soup_controlers= require('../controllers/soup');
+var router = express.Router();
+
 // A little function to check if we have an authorized user and continue on or 
 // redirect to login. 
-const secured = (req, res, next) => { 
-    if (req.user){ 
-      return next(); 
-    } 
-    req.session.returnTo = req.originalUrl; 
-    res.redirect("/login"); 
-  } 
+ 
 /* GET home page. */
   router.get('/', soup_controlers.soup_view_all_Page);
 /* GET detail soup page */ 
 router.get('/detail', soup_controlers.soup_view_one_Page); 
 /* GET create soup page */ 
 router.get('/create', soup_controlers.soup_create_Page); 
+const secured = (req, res, next) => { 
+  if (req.user){ 
+    return next(); 
+  } 
+  req.session.returnTo = req.originalUrl; 
+  res.redirect('/login'); 
+}
 /* GET create update page */ 
 router.get('/update',secured, soup_controlers.soup_update_Page); 
 /* GET delete soup page */ 

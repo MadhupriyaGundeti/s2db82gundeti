@@ -1,17 +1,22 @@
-extends layout 
+extends layout
 
 block content
-    h1= title
-    -let items=results;
-    div(class="container-fluid") 
-    div(class="row m-1") 
-      each item in items  
-        - let destination = `dispatch(\"soup/update?id=${item._id}\")` 
-        div(class="row-sm-2", class="m-1") Item #{item.soup_name}(#{item.soup_size}) is #{item.price} 
-          button.btn( class="btn-primary ml-1", onclick= destination) Update 
+  h1= title
+  -let items=results;
+  div(class="container-fluid")  
+    - let destination4 = `dispatch(\"/soup/create\")`
+      button.btn( class="btn-danger ml-1", onclick= destination4) Create 
+      div(class="row m-1")
+        each item in items 
+          - let destination1 = `dispatch(\"/soup/update?id=${item._id}\")`
+          - let destination2 = `dispatch(\"/soup/detail?id=${item._id}\")`
+          - let destination3 = `dispatch(\"/soup/delete?id=${item._id}\")` 
+          div(class="row-sm-2", class="m-1") Item #{item.soup_name}(#{item.soup_size}) is #{item.price} 
+            button.btn( class="btn-primary ml-1", onclick= destination1) Update 
+            button.btn( class="btn-secondary ml-1", onclick= destination2) Detail 
+            button.btn( class="btn-danger ml-1", onclick= destination3) Delete
    
-    script. 
-      function dispatch(path){ 
-        window.location.href=path 
-      } 
- 
+  script. 
+    function dispatch(path){ 
+      window.location.href=path 
+    }
