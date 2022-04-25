@@ -2,11 +2,11 @@ extends layout
 
 block content
     h1= title
-    -let results =[{soup_name:"Tomato",soup_size:"small",price:4.56},{soup_name:"Corn",soup_size:"medium",price:6.72},{soup_name:"Chicken",soup_size:"large",price:9.92}]
+    -let items=results;
     div(class="container-fluid") 
     div(class="row m-1") 
-      each item in results  
-        - let destination = `dispatch(\"resource/update?id=${item._id}\")` 
+      each item in items  
+        - let destination = `dispatch(\"soup/update?id=${item._id}\")` 
         div(class="row-sm-2", class="m-1") Item #{item.soup_name}(#{item.soup_size}) is #{item.price} 
           button.btn( class="btn-primary ml-1", onclick= destination) Update 
    
